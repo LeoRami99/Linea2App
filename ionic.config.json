@@ -1,0 +1,7 @@
+{
+  "name": "AppLinea",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
