@@ -40,6 +40,7 @@
 </template>
 
 <script lang="ts">
+import "@/dbFirebase/initFirabase";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
@@ -51,6 +52,16 @@ export default defineComponent({
     IonPage,
     IonTitle,
     IonToolbar
+  },
+  data() {
+    return {
+      usuario: '',
+      password: ''
+    }
+  },
+  login(){
+    console.log(this.usuario)
+    console.log(this.password)
   }
 });
 </script>

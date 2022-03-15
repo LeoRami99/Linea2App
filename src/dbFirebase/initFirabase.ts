@@ -1,9 +1,11 @@
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
-const { initializeApp } = require('firebase/app');
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+// import firebase from 'firebase';
+// import firebase from "@firebase/app";
+import { initializeApp } from "@firebase/app";
+import 'firebase/firestore';
+
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -19,5 +21,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+// app.firestore().settings({});
+// export default firebaseApp.firestore();
 
 
