@@ -46,9 +46,12 @@
 <script lang="typescript">
 import {IonContent, IonHeader, IonPage, IonToolbar, IonTitle, IonInput} from '@ionic/vue';
 import { defineComponent } from "vue";
-import firebase from "@firebase/app";
+// import frs from "@firebase/firestore";
+import { getFirestore, collection, getDocs, doc, setDoc } from 'firebase/firestore/lite';
 import '@/dbFirebase/initFirabase';
 import router from '@/router';
+import app from '@/dbFirebase/initFirabase';
+import sha256 from 'js-sha256';
 export default defineComponent({
     name: 'RegisterLinea',
     components:{
@@ -68,9 +71,20 @@ export default defineComponent({
     },
     methods:{
          registrar(){
-             console.log(this.usuario)
-             console.log(this.password)
-             console.log(this.email)
+          //  firestore export in vue
+          const db = getFirestore(app);
+          if(this.usuario.length > 0 && this.password.length > 0 && this.email.length > 0){
+            
+              setDoc(doc(db, "usuarios", this.usuario), {
+                email: this.email,
+                password: sha256.sha256(this.password),
+              });
+            this.usuario = '';
+            this.password = '';
+            this.email = '';
+            
+            router.push('/login');
+          }
         },
         login(){
             router.push('/login')

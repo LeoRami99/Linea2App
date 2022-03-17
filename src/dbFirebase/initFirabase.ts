@@ -3,7 +3,7 @@
 // import firebase from 'firebase';
 // import firebase from "@firebase/app";
 import { initializeApp } from "@firebase/app";
-import 'firebase/firestore';
+// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 
 
@@ -21,8 +21,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 // const firebaseApp = firebase.initializeApp(firebaseConfig);
 // app.firestore().settings({});
-// export default firebaseApp.firestore();
+export default app;
 
 
