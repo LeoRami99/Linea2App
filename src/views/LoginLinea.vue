@@ -14,7 +14,10 @@
               <ion-card-header>
                 <ion-card-title>
                   <ion-label>
-                    <h2>Login</h2>
+                    <center>
+                      <h1 id="icon-papanoel">🎅</h1>
+                      <h1>Login</h1>
+                    </center>
                   </ion-label>
                 </ion-card-title>
               </ion-card-header>
@@ -30,6 +33,7 @@
                   </ion-item>
                 </ion-list>
                 <ion-button expand="block" @click="login">Login</ion-button>
+                <ion-button expand="block" @click="registro">Registro</ion-button>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -41,7 +45,11 @@
 
 <script lang="ts">
 import "@/dbFirebase/initFirabase";
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import app from "@/dbFirebase/initFirabase";
+import { getFirestore, doc, getDoc } from 'firebase/firestore/lite';
+import router from '@/router';
+import sha256 from 'js-sha256';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonItem, IonInput, IonLabel } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -51,7 +59,10 @@ export default defineComponent({
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonItem,
+    IonInput,
+    IonLabel
   },
   data() {
     return {
@@ -59,12 +70,36 @@ export default defineComponent({
       password: ''
     }
   },
-  login(){
-    console.log(this.usuario)
-    console.log(this.password)
+  methods:{
+      registro(){
+        router.push('/registro')
+      },
+      async login(){
+        const password=sha256.sha256(this.password);
+        const user=this.usuario
+        console.log(user)
+        const db = getFirestore(app);
+        const docRef=doc(db, "usuarios", user);
+        const docSnap= await getDoc(docRef);
+        if(docSnap.exists()){
+          const pass= docSnap.data();
+          // console.log("Document data", docSnap.data().password)
+          console.log(pass.password)
+          if(pass.password==password){
+            router.push('/inicio')
+          }else{
+            alert("Contraseña incorrecta")
+          }
+        }else{
+          console.log("Esta monda no existe")
+        }
+      },
   }
 });
 </script>
 <style scoped>
-
+  #icon-papanoel{
+    font-size: 100px;
+  
+  }
 </style>

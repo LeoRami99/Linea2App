@@ -13,8 +13,15 @@
             <ion-card>
               <ion-card-header>
                 <ion-card-title>
+                  <ion-image>
+                    <center>
+                    <img src="../images/addUser.png" alt="" id="imgAdd">
+                    </center>
+                  </ion-image>
                   <ion-label>
-                    <h2>Registro</h2>
+                    <center>
+                      <h1>Registro</h1>
+                    </center>
                   </ion-label>
                 </ion-card-title>
               </ion-card-header>
@@ -46,8 +53,7 @@
 <script lang="typescript">
 import {IonContent, IonHeader, IonPage, IonToolbar, IonTitle, IonInput} from '@ionic/vue';
 import { defineComponent } from "vue";
-// import frs from "@firebase/firestore";
-import { getFirestore, collection, getDocs, doc, setDoc } from 'firebase/firestore/lite';
+import { getFirestore, doc, setDoc } from 'firebase/firestore/lite';
 import '@/dbFirebase/initFirabase';
 import router from '@/router';
 import app from '@/dbFirebase/initFirabase';
@@ -94,6 +100,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
-
+<style scoped>
+  #imgAdd{
+    width: 100px;
+    height: 100px;
+  }
 </style>
