@@ -5,7 +5,7 @@
         <ion-title>Login Linea APP</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content :fullscreen="true">
       <ion-grid>
         <ion-row>
@@ -33,7 +33,9 @@
                   </ion-item>
                 </ion-list>
                 <ion-button expand="block" @click="login">Login</ion-button>
-                <ion-button expand="block" @click="registro">Registro</ion-button>
+                <ion-button expand="block" @click="registro"
+                  >Registro</ion-button
+                >
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -46,14 +48,25 @@
 <script lang="ts">
 import "@/dbFirebase/initFirabase";
 import app from "@/dbFirebase/initFirabase";
-import { getFirestore, doc, getDoc } from 'firebase/firestore/lite';
-import router from '@/router';
-import sha256 from 'js-sha256';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonItem, IonInput, IonLabel } from '@ionic/vue';
-import { defineComponent } from 'vue';
+import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+import router from "@/router";
+import sha256 from "js-sha256";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+  IonInput,
+  IonLabel,
+  IonButton,
+  alertController,
+} from "@ionic/vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'LoginLinea',
+  name: "LoginLinea",
   components: {
     IonContent,
     IonHeader,
@@ -62,44 +75,59 @@ export default defineComponent({
     IonToolbar,
     IonItem,
     IonInput,
-    IonLabel
+    IonLabel,
   },
   data() {
     return {
-      usuario: '',
-      password: ''
-    }
+      usuario: "",
+      password: "",
+      error: "",
+    };
   },
-  methods:{
-      registro(){
-        router.push('/registro')
-      },
-      async login(){
-        const password=sha256.sha256(this.password);
-        const user=this.usuario
-        console.log(user)
-        const db = getFirestore(app);
-        const docRef=doc(db, "usuarios", user);
-        const docSnap= await getDoc(docRef);
-        if(docSnap.exists()){
-          const pass= docSnap.data();
-          // console.log("Document data", docSnap.data().password)
-          console.log(pass.password)
-          if(pass.password==password){
-            router.push('/inicio')
-          }else{
-            alert("Contraseña incorrecta")
-          }
-        }else{
-          console.log("Esta monda no existe")
+  methods: {
+    async errorLogin() {
+      const alert = await alertController.create({
+        cssClass: "my-custom-class",
+        header: "No se pudo iniciar sesión",
+        // subHeader: "Datos no encontrados",
+        message: this.error,
+        buttons: ["OK"],
+      });
+      await alert.present();
+
+      // const { role } = await alert.onDidDismiss();
+      // console.log('onDidDismiss resolved with role', role);
+    },
+    registro() {
+      router.push("/registro");
+    },
+    async login() {
+      const password = sha256.sha256(this.password);
+      const user = this.usuario;
+      console.log(user);
+      const db = getFirestore(app);
+      const docRef = doc(db, "usuarios", user);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const pass = docSnap.data();
+        // console.log("Document data", docSnap.data().password)
+        console.log(pass.password);
+        if (pass.password == password) {
+          router.push("/inicio");
+        } else {
+          this.error = "Contraseña incorrecta";
+          this.errorLogin();
         }
-      },
-  }
+      } else {
+        this.error="Usuario no encontrado";
+        this.errorLogin();
+      }
+    },
+  },
 });
 </script>
 <style scoped>
-  #icon-papanoel{
-    font-size: 100px;
-  
-  }
+#icon-papanoel {
+  font-size: 100px;
+}
 </style>
