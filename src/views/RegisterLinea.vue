@@ -13,16 +13,11 @@
             <ion-card>
               <ion-card-header>
                 <ion-card-title>
-                  <ion-image>
-                    <center>
-                      <!-- <lord-icon trigger="hover" src="../images/stars.json"></lord-icon> -->
-                      <img src="../images/addUser.png" alt="" id="imgAdd" />
-                    </center>
-                  </ion-image>
+                  <ion-list>  
+                        <img id="imgAdd" src="../images/addUser.png">
+                  </ion-list>  
                   <ion-label>
-                    <center>
-                      <h1>Registro</h1>
-                    </center>
+                      <h1 id="title-register">Registro</h1>
                   </ion-label>
                 </ion-card-title>
               </ion-card-header>
@@ -45,16 +40,14 @@
                     <ion-input type="password" v-model="password"></ion-input>
                   </ion-item>
                 </ion-list>
-                <ion-button expand="block" @click="prueba"
-                  >Registrar</ion-button
-                >
+                <ion-button expand="block" @click="registerValidation">Registrar</ion-button>
                 <ion-button expand="block" @click="login">Login</ion-button>
               </ion-card-content>
             </ion-card>
           </ion-col>
         </ion-row>
-      </ion-grid> </ion-content
-    >q
+      </ion-grid> 
+    </ion-content>
   </ion-page>
 </template>
 <script lang="typescript">
@@ -64,8 +57,20 @@ import {
   IonPage,
   IonToolbar,
   IonTitle,
-  IonInput,
   alertController,
+  IonInput,
+  IonLabel,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCardContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonList,
+  IonButton,
+  // IonImg,
+  IonItem
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import {
@@ -90,6 +95,18 @@ export default defineComponent({
     IonTitle,
     IonToolbar,
     IonInput,
+    IonLabel,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCardContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonList,
+    IonButton,
+    // IonImg,
+    IonItem
     // alertController,
   },
   data() {
@@ -136,22 +153,22 @@ export default defineComponent({
     login() {
       router.push("/login");
     },
-    async prueba() {
+    async registerValidation() {
       const db = getFirestore(app);
       const querySnapshot = await getDocs(collection(db, "usuarios"));
       querySnapshot.forEach((doc) => {
         if (doc.data().email == this.email) {
           // console.log("este email ya esta registra");
           this.error = "Este email ya esta registrado";
-          this.errorLogin()
+          this.errorLogin();
         } else if (doc.id == this.usuario) {
           // console.log("este usuario ya esta registrado");
           this.error = "Este usuario ya esta registrado";
-          this.errorLogin()
+          this.errorLogin();
         } else {
           this.registrar();
         }
-        console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id, " => ", doc.data());
       });
     },
   },
@@ -163,7 +180,13 @@ export default defineComponent({
 
 <style scoped>
 #imgAdd {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
   width: 100px;
   height: 100px;
+}
+#title-register{
+  text-align:center;
 }
 </style>

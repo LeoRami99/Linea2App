@@ -2,7 +2,6 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        
         <ion-title> 🦄 Bienvenido</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -18,17 +17,15 @@
         <ion-card-header>
           <ion-card-title>
             <ion-label>
-              <center>
-                <h1 id="icon-papanoel">🎅</h1>
-                <h1>Bienvenido</h1>
-              </center>
+              <h1 id="icon-papanoel">🎅</h1>
+              <h1 id="title-home">Bienvenido</h1>
             </ion-label>
           </ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-              <ion-button expand="block" @click="login">Login</ion-button>
-              <ion-button expand="block" @click="registro">Registro</ion-button>
+            <ion-button expand="block" @click="login">Login</ion-button>
+            <ion-button expand="block" @click="registro">Registro</ion-button>
           </ion-list>
         </ion-card-content>
       </ion-card>
@@ -43,6 +40,14 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonLabel,
+  // IonGrid,
+  IonCardContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonList,
+  IonButton,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import router from "@/router";
@@ -55,17 +60,31 @@ export default defineComponent({
     IonPage,
     IonTitle,
     IonToolbar,
+    IonLabel,
+    // IonGrid,
+    IonCardContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonList,
+    IonButton,
   },
-  methods:{
-    login(){
-      router.push("/login")
+  methods: {
+    login() {
+      router.push("/login");
+    },
+    registro(){
+      router.push("/registro")
     }
-
-  }
+  },
 });
 </script>
 
 <style scoped>
-
-
+#title-home{
+  text-align:center;
+}
+#icon-papanoel{
+  text-align:center;
+}
 </style>

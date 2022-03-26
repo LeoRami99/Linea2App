@@ -14,10 +14,10 @@
               <ion-card-header>
                 <ion-card-title>
                   <ion-label>
-                    <center>
+                    
                       <h1 id="icon-papanoel">🎅</h1>
-                      <h1>Login</h1>
-                    </center>
+                      <h1 id="title-login">Login</h1>
+                    
                   </ion-label>
                 </ion-card-title>
               </ion-card-header>
@@ -60,8 +60,17 @@ import {
   IonItem,
   IonInput,
   IonLabel,
-  IonButton,
   alertController,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCardContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonList,
+  IonButton
+
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 
@@ -76,6 +85,15 @@ export default defineComponent({
     IonItem,
     IonInput,
     IonLabel,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCardContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonList,
+    IonButton
   },
   data() {
     return {
@@ -119,7 +137,7 @@ export default defineComponent({
           this.errorLogin();
         }
       } else {
-        this.error="Usuario no encontrado";
+        this.error = "Usuario no encontrado";
         this.errorLogin();
       }
     },
@@ -128,6 +146,10 @@ export default defineComponent({
 </script>
 <style scoped>
 #icon-papanoel {
+  text-align:center;
   font-size: 100px;
+}
+#title-login{
+  text-align:center;
 }
 </style>
