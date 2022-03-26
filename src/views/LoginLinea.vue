@@ -33,9 +33,7 @@
                   </ion-item>
                 </ion-list>
                 <ion-button expand="block" @click="login">Login</ion-button>
-                <ion-button expand="block" @click="registro"
-                  >Registro</ion-button
-                >
+                <ion-button expand="block" @click="registro">Registro</ion-button>
               </ion-card-content>
             </ion-card>
           </ion-col>
