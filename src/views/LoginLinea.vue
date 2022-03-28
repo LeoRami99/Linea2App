@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
         <ion-title>Login Linea APP</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -14,10 +17,8 @@
               <ion-card-header>
                 <ion-card-title>
                   <ion-label>
-                    
-                      <h1 id="icon-papanoel">🎅</h1>
-                      <h1 id="title-login">Login</h1>
-                    
+                    <h1 id="icon-papanoel">🎅</h1>
+                    <h1 id="title-login">Login</h1>
                   </ion-label>
                 </ion-card-title>
               </ion-card-header>
@@ -33,7 +34,7 @@
                   </ion-item>
                 </ion-list>
                 <ion-button expand="block" @click="login">Login</ion-button>
-                <ion-button expand="block" @click="registro">Registro</ion-button>
+                <!-- <ion-button expand="block" @click="registro">Registro</ion-button> -->
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -67,8 +68,9 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonList,
-  IonButton
-
+  IonButton,
+  IonButtons,
+  IonBackButton,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 
@@ -91,7 +93,9 @@ export default defineComponent({
     IonCardHeader,
     IonCardTitle,
     IonList,
-    IonButton
+    IonButton,
+    IonButtons,
+    IonBackButton,
   },
   data() {
     return {
@@ -114,9 +118,6 @@ export default defineComponent({
       // const { role } = await alert.onDidDismiss();
       // console.log('onDidDismiss resolved with role', role);
     },
-    registro() {
-      router.push("/registro");
-    },
     async login() {
       const password = sha256.sha256(this.password);
       const user = this.usuario;
@@ -127,7 +128,7 @@ export default defineComponent({
       if (docSnap.exists()) {
         const pass = docSnap.data();
         // console.log("Document data", docSnap.data().password)
-        console.log(pass.password);
+        // console.log(pass.password);
         if (pass.password == password) {
           router.push("/inicio");
         } else {
@@ -144,10 +145,10 @@ export default defineComponent({
 </script>
 <style scoped>
 #icon-papanoel {
-  text-align:center;
+  text-align: center;
   font-size: 100px;
 }
-#title-login{
-  text-align:center;
+#title-login {
+  text-align: center;
 }
 </style>

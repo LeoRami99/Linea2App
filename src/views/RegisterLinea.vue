@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
         <ion-title>Registro APP Linea 2</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -41,7 +44,7 @@
                   </ion-item>
                 </ion-list>
                 <ion-button expand="block" @click="registerValidation">Registrar</ion-button>
-                <ion-button expand="block" @click="login">Login</ion-button>
+                <!-- <ion-button expand="block" @click="login">Login</ion-button> -->
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -70,7 +73,9 @@ import {
   IonList,
   IonButton,
   // IonImg,
-  IonItem
+  IonItem,
+  IonButtons,
+  IonBackButton
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import {
@@ -106,8 +111,10 @@ export default defineComponent({
     IonList,
     IonButton,
     // IonImg,
-    IonItem
+    IonItem,
     // alertController,
+    IonButtons,
+    IonBackButton
   },
   data() {
     return {
@@ -150,20 +157,17 @@ export default defineComponent({
         router.push("/login");
       }
     },
-    login() {
-      router.push("/login");
-    },
     async registerValidation() {
       const db = getFirestore(app);
       const querySnapshot = await getDocs(collection(db, "usuarios"));
       querySnapshot.forEach((doc) => {
         if (doc.data().email == this.email) {
           // console.log("este email ya esta registra");
-          this.error = "Este email ya esta registrado";
+          this.error = "Este email ya está registrado";
           this.errorLogin();
         } else if (doc.id == this.usuario) {
           // console.log("este usuario ya esta registrado");
-          this.error = "Este usuario ya esta registrado";
+          this.error = "Este usuario ya está registrado";
           this.errorLogin();
         } else {
           this.registrar();
