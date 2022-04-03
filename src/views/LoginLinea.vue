@@ -3,7 +3,7 @@
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
+          <ion-back-button default-href="home"></ion-back-button>
         </ion-buttons>
         <ion-title>Login Linea APP</ion-title>
       </ion-toolbar>
@@ -140,6 +140,7 @@ export default defineComponent({
         this.errorLogin();
       }
     },
+  
   },
 });
 </script>
