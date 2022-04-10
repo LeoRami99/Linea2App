@@ -93,8 +93,8 @@ import {
   setDoc,
   getDocs,
   collection,
-  addDoc,
-  onSnapshot,
+  // addDoc,
+  // onSnapshot,
 } from "firebase/firestore";
 // import {loadAnimation} from 'lottie-web';
 // import {defineLordIconElement} from 'lord-icon-element';

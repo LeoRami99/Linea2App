@@ -4,6 +4,8 @@ import HomePage from '../views/HomePage.vue'
 import LoginLinea from '../views/LoginLinea.vue'
 import RegisterLinea from '../views/RegisterLinea.vue'
 import InicioLinea from '../views/Inicio.vue'
+import UbicacionApp from '../views/Ubicacion.vue'
+import RestApp from '../views/RestApp.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,6 +31,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/inicio',
     name: 'Inicio',
     component: InicioLinea
+  },
+  {
+    path: '/ubicacion',
+    name: 'Ubicacion',
+    component: UbicacionApp
+  },
+  {
+    path: '/restapp',
+    name: 'Restapp',
+    component: RestApp
   }
   
 ]
