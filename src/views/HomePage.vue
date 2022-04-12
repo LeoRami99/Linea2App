@@ -48,6 +48,7 @@ import {
   IonCardTitle,
   IonList,
   IonButton,
+
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import router from "@/router";
@@ -68,13 +69,19 @@ export default defineComponent({
     IonCardTitle,
     IonList,
     IonButton,
+
+  },
+  data(){
+    return {
+      getData: "",
+    }
   },
   methods: {
     login() {
       router.push("/login");
     },
     registro(){
-      router.push("/registro")
+      router.push("/registro");
     }
   },
 });

@@ -59,6 +59,7 @@
           <!-- <ion-button expand="block" @click="registro">Registro</ion-button> -->
         </ion-card-content>
       </ion-card>
+      <!-- {{getData}} -->
     </ion-content>
   </ion-page>
 </template>
@@ -85,6 +86,7 @@ import {
   
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+import {apiRest} from "../apirest/apirest";
 export default defineComponent({
   name: "RestApp",
   components: {
@@ -107,6 +109,9 @@ export default defineComponent({
     IonList,
     IonButton,
   },
+  mounted() {
+    apiRest()
+  }
 });
 </script>
 
