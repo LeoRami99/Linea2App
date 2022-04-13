@@ -11,7 +11,7 @@ export const apiRest = function() {
     axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*';
     axios.defaults.headers.common['Access-Control-Allow-Credentials'] = 'true';
 
-    axios.get('https://7f67-2800-484-1386-be00-00-5.ngrok.io/libros').then(response=>{
+    axios.get('http://localhost:8080/libros').then(response=>{
         console.log("Funciono");
         console.log(response.data);
     }).catch(()=>{
