@@ -110,7 +110,7 @@ export default defineComponent({
     IonButton,
   },
   mounted() {
-    apiRest()
+    console.log(apiRest())
   }
 });
 </script>

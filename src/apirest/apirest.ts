@@ -1,11 +1,17 @@
 
+  
 
-//Extract the data from the api rest whit cors permissions
 import axios from 'axios';
 
 //extraer los datos de la api rest
 export const apiRest = function() {
-    axios.get('http://localhost:8100/webservice/post.php').then(response=>{
+    //deshabilitar cors para que funcione en localhost
+    axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+    axios.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*';
+    axios.defaults.headers.common['Access-Control-Allow-Credentials'] = 'true';
+
+    axios.get('https://7f67-2800-484-1386-be00-00-5.ngrok.io/libros').then(response=>{
         console.log("Funciono");
         console.log(response.data);
     }).catch(()=>{
