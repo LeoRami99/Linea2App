@@ -26,6 +26,7 @@
           <ion-list>
             <ion-button expand="block" @click="login">Login</ion-button>
             <ion-button expand="block" @click="registro">Registro</ion-button>
+            <ion-button expand="block" @click="apirest">Apirest</ion-button>
           </ion-list>
         </ion-card-content>
       </ion-card>
@@ -48,7 +49,8 @@ import {
   IonCardTitle,
   IonList,
   IonButton,
-
+  loadingController,
+  IonRouterOutlet,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import router from "@/router";
@@ -69,29 +71,51 @@ export default defineComponent({
     IonCardTitle,
     IonList,
     IonButton,
-
+    // loadingController,
   },
-  data(){
+  data() {
     return {
       getData: "",
-    }
+    };
+  },
+  props: {
+    timeout: { type: Number, default: 1000 },
   },
   methods: {
     login() {
       router.push("/login");
     },
-    registro(){
+    registro() {
       router.push("/registro");
-    }
+    },
+    apirest() {
+      //routerAnimation
+      router.push("/restapp");
+      // router.push("/restapp");
+      this.presentLoading()
+    },
+    async presentLoading() {
+      const loading = await loadingController.create({
+        cssClass: "my-custom-class",
+        message: "Cargando...",
+        duration: this.timeout,
+      });
+
+      await loading.present();
+
+      setTimeout(function () {
+        loading.dismiss();
+      }, this.timeout);
+    },
   },
 });
 </script>
 
 <style scoped>
-#title-home{
-  text-align:center;
+#title-home {
+  text-align: center;
 }
-#icon-papanoel{
-  text-align:center;
+#icon-papanoel {
+  text-align: center;
 }
 </style>
