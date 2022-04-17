@@ -29,6 +29,10 @@
               <ion-label position="floating">Id</ion-label>
               <ion-input type="text" v-model="id"></ion-input>
             </ion-item>
+            <ion-item>
+              <ion-label position="floating">Uri</ion-label>
+              <ion-input type="text" v-model="uri"></ion-input>
+            </ion-item>
           </ion-list>
           <ion-button expand="block" @click="viewApi">Get</ion-button>
           <!-- <ion-button expand="block" @click="login">Post</ion-button> -->
@@ -117,7 +121,8 @@ export default defineComponent({
       titulo: "",
       autor: "",
       genero: "",
-      error:""
+      error:"",
+      uri:""
     };
   },
   methods: {
@@ -133,7 +138,7 @@ export default defineComponent({
     },
     viewApi() {
 
-      apiRest("http://192.168.0.8:8080/http://192.168.0.11:8080/libros/"+this.id).then((response) => {
+      apiRest(this.uri+this.id).then((response) => {
         console.log(response.data);
         this.titulo = response.data.titulo;
         this.autor = response.data.autor;
