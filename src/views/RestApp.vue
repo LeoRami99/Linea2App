@@ -132,7 +132,8 @@ export default defineComponent({
       await alert.present();
     },
     viewApi() {
-      apiRest("http://192.168.0.11:8080/libros/"+this.id).then((response) => {
+
+      apiRest("http://192.168.0.8:8080/http://192.168.0.11:8080/libros/"+this.id).then((response) => {
         console.log(response.data);
         this.titulo = response.data.titulo;
         this.autor = response.data.autor;
