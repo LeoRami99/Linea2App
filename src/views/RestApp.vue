@@ -71,7 +71,7 @@ import {
   IonItem,
   IonInput,
   IonLabel,
-  // alertController,
+  alertController,
   // IonGrid,
   // IonRow,
   // IonCol,
@@ -117,16 +117,29 @@ export default defineComponent({
       titulo: "",
       autor: "",
       genero: "",
+      error:""
     };
   },
   methods: {
+    async errorLogin(error: string) {
+      const alert = await alertController.create({
+        cssClass: "my-custom-class",
+        header: "Error en la conexión",
+        // subHeader: "Datos no encontrados",
+        message: error + " Ingrese un ID valido",
+        buttons: ["OK"],
+      });
+      await alert.present();
+    },
     viewApi() {
-      apiRest("http://192.168.0.11:8080/libros/" + this.id).then((res) => {
-        //convertir a json
-        // console.log(res.data);
-        this.titulo = res.data.titulo;
-        this.autor = res.data.autor;
-        this.genero = res.data.genero;
+      apiRest("http://192.168.0.11:8080/libros/"+this.id).then((response) => {
+        console.log(response.data);
+        this.titulo = response.data.titulo;
+        this.autor = response.data.autor;
+        this.genero = response.data.genero;
+        
+      }).catch((error) => {
+        this.errorLogin(error);
       });
     },
   },

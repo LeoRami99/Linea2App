@@ -34,6 +34,7 @@
                   </ion-item>
                 </ion-list>
                 <ion-button expand="block" @click="login">Login</ion-button>
+                <ion-button expand="block" @click="bioFunc()">FingerPrint</ion-button>
                 <!-- <ion-button expand="block" @click="registro">Registro</ion-button> -->
               </ion-card-content>
             </ion-card>
@@ -48,6 +49,7 @@
 import "@/dbFirebase/initFirabase";
 import app from "@/dbFirebase/initFirabase";
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+// import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import router from "@/router";
 import sha256 from "js-sha256";
 import {
@@ -73,6 +75,7 @@ import {
   IonBackButton,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+import {bioFunc} from "../biometrics/biometric";
 
 export default defineComponent({
   name: "LoginLinea",
@@ -105,6 +108,10 @@ export default defineComponent({
     };
   },
   methods: {
+    fingerprint() {
+        bioFunc()
+        alert(bioFunc())
+    },
     async errorLogin() {
       const alert = await alertController.create({
         cssClass: "my-custom-class",
