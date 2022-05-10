@@ -61,7 +61,11 @@
           <!-- <ion-button expand="block" @click="registro">Registro</ion-button> -->
         </ion-card-content>
       </ion-card>
+      <ion-card id="cardsito">
+        <div id="mapita"></div>
+      </ion-card>
     </ion-content>
+    
   </ion-page>
 </template>
 <script lang="ts">
@@ -82,10 +86,14 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonList,
+  IonList, 
   IonButton,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+// import mapboxgl from "mapbox-gl";
+// import 'mapbox-gl/dist/mapbox-gl.css';
+import {mapboxV} from "../mapboxV/mp"
+// import L from "./leaflet/dist";
 export default defineComponent({
   name: "UbicacionApp",
   components: {
@@ -112,6 +120,8 @@ export default defineComponent({
     return {
       latitud: NaN,
       longitud: NaN,
+      mapita: null,
+      // mapita: Object
     };
   },
   methods: {
@@ -128,8 +138,21 @@ export default defineComponent({
       }
     },
   },
+
+  mounted() {
+    // this.verUbicacion()
+    mapboxV("mapita");
+  },
 });
 </script>
 
 <style>
+#mapita, #cardsito{
+  /* position:absolute; */
+  width: auto;
+  height: 300px;
+  top:0;
+  bottom:0;
+
+}
 </style>

@@ -53,6 +53,13 @@
               <ion-label position="floating">Genero</ion-label>
               <ion-input type="text" v-model="genero"></ion-input>
             </ion-item>
+            <ion-item>
+              <ion-label position="floating">Descripción</ion-label>
+              <ion-input type="text" v-model="descripcion"></ion-input>
+            </ion-item>
+          
+                <ion-img :src="imagens"></ion-img>
+            
             <!-- {{getData}} -->
           </ion-list>
           <!-- <ion-button expand="block" @click="viewApi">Get</ion-button> -->
@@ -87,6 +94,7 @@ import {
   IonButton,
   IonButtons,
   IonBackButton,
+  IonImg
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { apiRest } from "../apirest/apirest";
@@ -114,6 +122,7 @@ export default defineComponent({
     IonButton,
     IonButtons,
     IonBackButton,
+    IonImg
   },
   data() {
     return {
@@ -121,6 +130,8 @@ export default defineComponent({
       titulo: "",
       autor: "",
       genero: "",
+      descripcion: "",
+      imagens:"",
       error:"",
       uri:""
     };
@@ -143,6 +154,8 @@ export default defineComponent({
         this.titulo = response.data.titulo;
         this.autor = response.data.autor;
         this.genero = response.data.genero;
+        this.descripcion=response.data.descripcion;
+        this.imagens=response.data.imagen;
         
       }).catch((error) => {
         this.errorLogin(error);
